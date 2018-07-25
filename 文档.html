@@ -1,0 +1,70 @@
+<h1>ParkingLot API</h1>
+<h3>1、getAllParkingLots</h3>
+<pre><code>method：Get
+path:"/parkingLots"
+request:
+response:
+[
+    {
+        "plId": 1,
+        "plName": "北方停车场",
+        "plSize": 10
+    },
+    {
+        "plId": 2,
+        "plName": "南方停车场",
+        "plSize": 5
+    }
+]
+</code></pre>
+<h3>2、创建停车场</h3>
+<pre><code>method：Post
+path:"/parkingLots"
+request:{ParkingLot parkingLot}
+        {"plId": 3,"plName": "西方停车场","plSize": 1}
+response:
+{
+    "plId": 3,
+    "plName": "西方停车场",
+    "plSize": 1
+}
+</code></pre>
+<h3>3、getAllParkingBoys</h3>
+<pre><code>method：Get
+path:"/parkingBoys"
+request:
+response:
+[{
+        "pbId": 1,
+        "parkingLots": []
+}]
+</code></pre>
+<h3>4、创建停车小弟</h3>
+<pre><code>method：Post
+path:"/parkingBoys"
+request:{ParkingBoy parkingBoy}
+        {"pbId": 5,"parkingLots": []}
+response:
+{
+    "pbId": 5,
+    "parkingLots": []
+}
+</code></pre>
+<h3>5、给停车小弟安排停车场</h3>
+<pre><code>method：Post
+path:"/parkingBoys/{pbId}/parkingLots"
+      http://localhost:8080/parkingBoys/1/parkingLots
+request:ParkingLot parkingLot, int pbId
+       {"plId": 3,"plName": "西方停车场","plSize": 1}
+response:
+{
+    "pbId": 1,
+    "parkingLots": [
+        {
+            "plId": 3,
+            "plName": "西方停车场",
+            "plSize": 1
+        }
+    ]
+}
+</code></pre>
