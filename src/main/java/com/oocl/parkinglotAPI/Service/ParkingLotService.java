@@ -11,7 +11,8 @@ public class ParkingLotService {
     {
         ParkingLot parkingLot1 = new ParkingLot(1,"北方停车场",10);
         ParkingLot parkingLot2 = new ParkingLot(2,"南方停车场",5);
-        parkingLots.add(parkingLot1);parkingLots.add(parkingLot2);
+        ParkingLot parkingLot3 = new ParkingLot(3,"东方停车场",0);
+        parkingLots.add(parkingLot1);parkingLots.add(parkingLot2);parkingLots.add(parkingLot3);
     }
 
     public ArrayList<ParkingLot> getParkingLots() { return parkingLots; }
@@ -25,5 +26,14 @@ public class ParkingLotService {
         );
         parkingLots.add(newParkingLot);
         return newParkingLot;
+    }
+
+    public ArrayList<ParkingLot> deleteParkingLot(int plId) {
+        for(ParkingLot p : parkingLots){
+            if((p.getPlId() == plId) && (p.getPlSize()== 0)){
+                parkingLots.remove(p);
+                return parkingLots;
+            }
+        }return null;
     }
 }

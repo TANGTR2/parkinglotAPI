@@ -27,4 +27,9 @@ public class ParkingBoyController {
     public ParkingBoy postParkingLotsToParkingBoy(@RequestBody ParkingLot parkingLot, @PathVariable int pbId){
         return parkingBoyService.postParkingLotsToParkingBoy(parkingLot,pbId);
     }
+
+    @GetMapping(path="/parkingBoys/{pbId}")
+    public ArrayList<ParkingLot> selectParkingLotsFromTheParkingBoy(@PathVariable int pbId){
+        return parkingBoyService.selectParkingLots(pbId);
+    }
 }
