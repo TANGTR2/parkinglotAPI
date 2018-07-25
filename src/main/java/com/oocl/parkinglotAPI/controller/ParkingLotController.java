@@ -1,6 +1,7 @@
 package com.oocl.parkinglotAPI.controller;
 
 import com.oocl.parkinglotAPI.Service.ParkingLotService;
+import com.oocl.parkinglotAPI.model.Car;
 import com.oocl.parkinglotAPI.model.ParkingLot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,11 @@ public class ParkingLotController {
     @DeleteMapping(path ="/parkingLots/{plId}")
     public ArrayList<ParkingLot>  deleteParkingLot(@PathVariable int plId){
         return parkingLotService.deleteParkingLot(plId);
+    }
+
+    @PostMapping(path="/parkingLots/car")
+    public ParkingLot park(@RequestBody Car car){
+        return parkingLotService.park(car);
     }
 
 }

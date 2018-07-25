@@ -1,5 +1,6 @@
 package com.oocl.parkinglotAPI.Service;
 
+import com.oocl.parkinglotAPI.model.Car;
 import com.oocl.parkinglotAPI.model.ParkingLot;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,15 @@ public class ParkingLotService {
             }
         }return null;
     }
+
+    public ParkingLot park(Car car) {
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.getPlSize() > 0) {
+                parkingLot.setPlSize(parkingLot.getPlSize() - 1);
+                return parkingLot;
+            }
+        }
+        return null;
+    }
+
 }

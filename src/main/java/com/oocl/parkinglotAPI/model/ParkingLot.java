@@ -2,11 +2,14 @@ package com.oocl.parkinglotAPI.model;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class ParkingLot {
     private int plId;
     private String plName;
     private int plSize;
+    ArrayList<ParkingLot> parkingLots = new ArrayList<>();
     public ParkingLot(){}
 
     public ParkingLot(int plId, String plName, int plSize){
