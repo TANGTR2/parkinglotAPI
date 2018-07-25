@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "e40d51d4-8365-46eb-91d5-7acae6d2ddc3",
+		"name": "parking-lot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "6aa2e939-f26c-4bd0-86bd-718d8f901a2d",
+			"name": "get-all-parkinglots",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee668270-7d63-4c24-8843-c333b7a42916",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return 2 parking lots\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql([",
+							"    {",
+							"        \"plId\": 1,",
+							"        \"plName\": \"北方停车场\",",
+							"        \"plSize\": 10",
+							"    },",
+							"    {",
+							"        \"plId\": 2,",
+							"        \"plName\": \"南方停车场\",",
+							"        \"plSize\": 5",
+							"    }",
+							"]);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"plId\": 3,\"plName\": \"西方停车场\",\"plSize\": 1}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/parkingLots",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingLots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c20c1b97-1b63-48f7-866f-a354e48df1ce",
+			"name": "post-parkinglot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee967154-295e-4789-9c61-1431f1d597c3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"http://localhost:8080/parkingLots\", function (err, response) {",
+							"    pm.test(\"add a new parkinglot\", function () {",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData).to.eql([",
+							"    {",
+							"        \"plId\": 1,",
+							"        \"plName\": \"北方停车场\",",
+							"        \"plSize\": 10",
+							"    },",
+							"    {",
+							"        \"plId\": 2,",
+							"        \"plName\": \"南方停车场\",",
+							"        \"plSize\": 5",
+							"    },",
+							"    {",
+							"       \"plId\": 3,",
+							"       \"plName\": \"西方停车场\",",
+							"      \"plSize\": 1",
+							"    }",
+							"]);",
+							"",
+							"    ",
+							"    });",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"plId\": 3,\"plName\": \"西方停车场\",\"plSize\": 1}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/parkingLots",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingLots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e461e7a1-cc32-4fae-bc6a-d8dc5917117b",
+			"name": "post-receipt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "444b736c-6ccd-451a-812e-199c39bb30f4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return receipt\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql(",
+							"    {\"id\":1,\"isValid\":true}",
+							");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1,\"isValid\":true}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/receipts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"receipts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d4cc9883-432c-4450-8495-835d4dc9cf2f",
+			"name": "select-parkinglots-from-parkingboy-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2eb83c1c-2570-4aa0-ba4d-98261ce7d6be",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return 2 parking lots\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql([",
+							"    {",
+							"        \"plId\": 1,",
+							"        \"plName\": \"北方停车场\",",
+							"        \"plSize\": 10",
+							"    },",
+							"    {",
+							"        \"plId\": 2,",
+							"        \"plName\": \"南方停车场\",",
+							"        \"plSize\": 5",
+							"    }",
+							"]);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/parkingBoys/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingBoys",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "be1ca2aa-78ac-4037-a5bd-990f707fd418",
+			"name": "delete-a-parkinglot-is-empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f5428470-fd25-4b21-8257-74af75df5d37",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return 2 parking lots\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql([",
+							"    {",
+							"        \"plId\": 1,",
+							"        \"plName\": \"北方停车场\",",
+							"        \"plSize\": 10",
+							"    },",
+							"    {",
+							"        \"plId\": 2,",
+							"        \"plName\": \"南方停车场\",",
+							"        \"plSize\": 5",
+							"    }",
+							"]);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/parkingLots/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingLots",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "3577e1c2-3652-4565-8782-ff5bc6e964ca",
+			"name": "post-order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e571a3d-8dd7-4c1f-bdb7-fd731a4d38a8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return order\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql({\"id\":1,\"carId\":\"粤88888\",\"pbId\": 0,\"isValid\":true});",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1,\"carId\":\"粤88888\",\"pbId\": 0,\"isValid\":true}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e5f6c5b5-6eef-436c-93b8-c1f21e5be87d",
+			"name": "put-order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "072fabaf-f0ca-4aad-aa1d-fd340c9c7196",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"should return order already alter\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql({\"id\":1,\"carId\":\"粤88888\",\"pbId\": 2,\"isValid\":false});",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"pbId\":2,\"parkingLots\":[{\n        \"plId\": 2,\n        \"plName\": \"南方停车场\",\n        \"plSize\": 5\n    }]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "4dfb819b-dd18-4ad0-95b1-faa38d3d9dae",
+			"name": "get-all-parkingboys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9c2bd40-1a12-4f56-a14f-2b400c219d4c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return 2 parking boys\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql([",
+							"    {",
+							"        \"pbId\": 1,",
+							"        \"parkingLots\": []",
+							"    },",
+							"    {",
+							"        \"pbId\": 2,",
+							"        \"parkingLots\": [",
+							"            {",
+							"                \"plId\": 1,",
+							"                \"plName\": \"北方停车场\",",
+							"                \"plSize\": 10",
+							"            },",
+							"            {",
+							"                \"plId\": 2,",
+							"                \"plName\": \"南方停车场\",",
+							"                \"plSize\": 5",
+							"            }",
+							"        ]",
+							"    }",
+							"]);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/parkingBoys",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingBoys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "7ef0c833-e484-4480-858c-be2d28144692",
+			"name": "post-parkingboy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "18b677d1-adb6-4933-89c5-cdf82151978c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"http://localhost:8080/parkingBoys\", function (err, response) {",
+							"    pm.test(\"post-parkingboy\", function () {",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData).to.eql([",
+							"    {",
+							"        \"pbId\": 1,",
+							"        \"parkingLots\": []",
+							"    },",
+							"    {",
+							"        \"pbId\": 2,",
+							"        \"parkingLots\": [",
+							"            {",
+							"                \"plId\": 1,",
+							"                \"plName\": \"北方停车场\",",
+							"                \"plSize\": 10",
+							"            },",
+							"            {",
+							"                \"plId\": 2,",
+							"                \"plName\": \"南方停车场\",",
+							"                \"plSize\": 5",
+							"            }",
+							"        ]",
+							"    },",
+							"    {",
+							"    \"pbId\": 3,",
+							"    \"parkingLots\": []",
+							"    }",
+							"    ]);",
+							"    });",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"pbId\": 3,\n        \"parkingLots\": []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/parkingBoys",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingBoys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "b6dd2783-51ca-45ef-abdd-ba902a6a8143",
+			"name": "park-car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":\"粤84520\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/parkingLots/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingLots",
+						"car"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
